@@ -38,6 +38,17 @@ Omit --out-file to print result to stdout.`,
 }
 
 func runEncrypt(cmd *cobra.Command, args []string) error {
+	// Validate input first (before any network calls)
+	if encryptData != "" {
+		if encryptInFile != "" {
+			return fmt.Errorf("--data and --in-file are mutually exclusive")
+		}
+	} else {
+		if encryptInFile == "" {
+			return fmt.Errorf("either --data or --in-file is required")
+		}
+	}
+
 	// Parse encryption context
 	encCtx, err := parseEncryptionContext(encryptEncryptionContext)
 	if err != nil {
@@ -56,17 +67,11 @@ func runEncrypt(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("GenerateDataKey: %w", err)
 	}
 
-	// Step 2: Read input (--data or --in-file)
+	// Step 2: Read input (already validated above)
 	var inData []byte
 	if encryptData != "" {
-		if encryptInFile != "" {
-			return fmt.Errorf("--data and --in-file are mutually exclusive")
-		}
 		inData = []byte(encryptData)
 	} else {
-		if encryptInFile == "" {
-			return fmt.Errorf("either --data or --in-file is required")
-		}
 		inData, err = readInput(encryptInFile)
 		if err != nil {
 			return fmt.Errorf("read input: %w", err)
