@@ -67,7 +67,7 @@ func runDecrypt(cmd *cobra.Command, args []string) error {
 	nonceB64 := strings.TrimSpace(lines[1])
 	cipherTextB64 := strings.TrimSpace(lines[2])
 
-	// Step 2: Create KMS client (default credential chain, same as kmscli)
+	// Step 2: Create KMS client (default credential chain)
 	kmsClient, err := kms.CreateKmsClient()
 	if err != nil {
 		return fmt.Errorf("create KMS client: %w", err)

@@ -1,4 +1,4 @@
-// Package kms provides KMS client creation following alibabacloud-kms-cli pattern.
+// Package kms provides KMS client creation using credentials-go default credential chain.
 // Uses credentials-go default credential chain (no AKSK required).
 // Region auto-detected from REGION_ID env or ECS metadata.
 // Endpoint defaults to VPC (kms-vpc.{region}.aliyuncs.com).
@@ -28,7 +28,7 @@ const (
 )
 
 // CreateKmsClient creates a KMS v2 SDK client using the default credential chain.
-// 凭据链: env vars → ~/.aliyun/config.json → ECS RAM role → credentials URI
+// 凭据�? env vars �?~/.aliyun/config.json �?ECS RAM role �?credentials URI
 func CreateKmsClient() (*kms20160120.Client, error) {
 	credential, err := credentials.NewCredential(nil)
 	if err != nil {

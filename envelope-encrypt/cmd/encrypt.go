@@ -44,7 +44,7 @@ func runEncrypt(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("parse --encryption-context: %w", err)
 	}
 
-	// Create KMS client (default credential chain, same as kmscli)
+	// Create KMS client (default credential chain)
 	kmsClient, err := kms.CreateKmsClient()
 	if err != nil {
 		return fmt.Errorf("create KMS client: %w", err)

@@ -2,8 +2,6 @@
 
 阿里云 KMS 信封加密/解密命令行工具。
 
-基于 [alibabacloud-kms-cli](https://github.com/aliyun/alibabacloud-kms-cli) 源码结构和依赖版本开发。
-
 ## 工具
 
 | 工具 | 说明 |
@@ -50,8 +48,6 @@ cd envelope-decrypt && go build -o envelope-decrypt .
 Region 通过 `REGION_ID` 环境变量或 ECS metadata 自动获取。
 
 ## 依赖
-
-与 [alibabacloud-kms-cli](https://github.com/aliyun/alibabacloud-kms-cli) 完全一致：
 
 | 包 | 版本 |
 |----|------|

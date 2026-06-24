@@ -1,4 +1,4 @@
-// Package kms provides KMS client creation following alibabacloud-kms-cli pattern.
+// Package kms provides KMS client creation using credentials-go default credential chain.
 // Uses credentials-go default credential chain (no AKSK required).
 // Region auto-detected from REGION_ID env or ECS metadata.
 // Endpoint defaults to VPC (kms-vpc.{region}.aliyuncs.com).
