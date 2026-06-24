@@ -28,7 +28,7 @@ const (
 )
 
 // CreateKmsClient creates a KMS v2 SDK client using the default credential chain.
-// 凭据�? env vars �?~/.aliyun/config.json �?ECS RAM role �?credentials URI
+// 凭据链: env vars → ~/.aliyun/config.json → ECS RAM role → credentials URI
 func CreateKmsClient() (*kms20160120.Client, error) {
 	credential, err := credentials.NewCredential(nil)
 	if err != nil {

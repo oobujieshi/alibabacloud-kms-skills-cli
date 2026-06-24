@@ -44,6 +44,7 @@ jobs:
           CGO_ENABLED: 0
         run: |
           cd envelope-encrypt
+          go mod download
           go build -ldflags="-s -w" -o ../envelope-encrypt-${{ matrix.suffix }} .
           cd ..
 
@@ -54,6 +55,7 @@ jobs:
           CGO_ENABLED: 0
         run: |
           cd envelope-decrypt
+          go mod download
           go build -ldflags="-s -w" -o ../envelope-decrypt-${{ matrix.suffix }} .
           cd ..
 

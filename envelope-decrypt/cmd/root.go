@@ -11,8 +11,8 @@ var rootCmd = &cobra.Command{
 	Use:   "envelope-decrypt",
 	Short: "KMS envelope decryption tool - decrypt files encrypted with KMS-managed keys",
 	Long: `KMS envelope decryption tool using Alibaba Cloud KMS v2 SDK.
-Credentials auto-resolved via default credential chain (
-  ENV vars â†?~/.aliyun/config.json â†?ECS RAM role â†?credentials URI`,
+Credentials auto-resolved via default credential chain:
+  ENV vars â†’ ~/.aliyun/config.json â†’ ECS RAM role â†’ credentials URI`,
 	Run: func(cmd *cobra.Command, args []string) {
 		_ = cmd.Help()
 	},
