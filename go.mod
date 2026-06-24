@@ -1,12 +1,12 @@
-module github.com/envelope-decrypt
+module github.com/oobujieshi/alibabacloud-kms-skills-cli
 
-go 1.23.8
+go 1.22
 
 require (
-	github.com/alibabacloud-go/darabonba-openapi/v2 v2.2.2
+	github.com/alibabacloud-go/darabonba-openapi/v2 v2.1.15
 	github.com/alibabacloud-go/kms-20160120/v3 v3.4.0
-	github.com/alibabacloud-go/tea v1.5.1
-	github.com/aliyun/credentials-go v1.4.5
+	github.com/alibabacloud-go/tea v1.4.0
+	github.com/aliyun/credentials-go v1.4.11
 	github.com/spf13/cobra v1.10.2
 )
 
@@ -21,9 +21,8 @@ require (
 	github.com/alibabacloud-go/debug v1.0.1 // indirect
 	github.com/alibabacloud-go/endpoint-util v1.1.0 // indirect
 	github.com/alibabacloud-go/openapi-util v0.1.1 // indirect
-	github.com/alibabacloud-go/tea-utils/v2 v2.0.9 // indirect
+	github.com/alibabacloud-go/tea-utils/v2 v2.0.7 // indirect
 	github.com/clbanning/mxj/v2 v2.7.0 // indirect
-	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

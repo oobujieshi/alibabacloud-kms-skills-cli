@@ -1,65 +1,43 @@
 # AlibabaCloud KMS Skills CLI
 
-阿里云 KMS 信封加密/解密命令行工具。
+阿里云 KMS 命令行工具集。单一 Go 模块，共享 `pkg/kms`，按 `cmd/` 组织多个命令。
 
-## 工具
+## 命令
 
-| 工具 | 说明 |
-|------|------|
-| `envelope-encrypt` | 信封加密：KMS GenerateDataKey + AES-256-GCM |
-| `envelope-decrypt` | 信封解密：KMS Decrypt + AES-256-GCM |
+| 命令 | 目录 | 说明 |
+|------|------|------|
+| `envelope-encrypt` | `cmd/envelope-encrypt/` | 信封加密 (GenerateDataKey + AES-256-GCM) |
+| `envelope-decrypt` | `cmd/envelope-decrypt/` | 信封解密 (Decrypt + AES-256-GCM) |
+| `symmetric-encrypt` | `cmd/symmetric-encrypt/` | 对称加密 (KMS Encrypt API) — 待实现 |
+| `symmetric-decrypt` | `cmd/symmetric-decrypt/` | 对称解密 (KMS Decrypt API) — 待实现 |
+| `get-secret` | `cmd/get-secret/` | 获取凭据值 (使用 alibabacloud-kms-cli) — 待实现 |
 
-## 安装
+## 项目结构
 
-从 [Releases](https://github.com/oobujieshi/alibabacloud-kms-skills-cli/releases) 下载对应平台的二进制文件：
-
-- `envelope-encrypt-{platform}` : 信封加密
-- `envelope-decrypt-{platform}` : 信封解密
-
-支持的平台后缀：
-- `linux-amd64`, `linux-arm64`
-- `windows-amd64.exe`
-- `darwin-amd64`, `darwin-arm64`
-
-## 使用
-
-```bash
-# 加密
-envelope-encrypt encrypt --key-id <cmk-id> --data "hello"
-
-# 解密
-envelope-decrypt decrypt --in-file secret.enc
 ```
-
-详见各工具的 `--help`。
+pkg/kms/client.go        # 共享：KMS 客户端、凭据链、Region 检测
+cmd/
+  envelope-encrypt/       # 信封加密入口
+  envelope-decrypt/       # 信封解密入口
+  symmetric-encrypt/      # 对称加密入口 (todo)
+  symmetric-decrypt/      # 对称解密入口 (todo)
+  get-secret/             # 获取凭据 (todo)
+```
 
 ## 构建
 
 ```bash
-cd envelope-encrypt && go build -o envelope-encrypt .
-cd envelope-decrypt && go build -o envelope-decrypt .
+go build -o envelope-encrypt ./cmd/envelope-encrypt/
+go build -o envelope-decrypt ./cmd/envelope-decrypt/
 ```
 
 ## 凭据
 
-无需传入 AK/SK。使用 `credentials-go` 默认凭据链：
-环境变量 → `~/.aliyun/config.json` → ECS RAM 角色 → ...
+无需传入 AK/SK。使用 credentials-go 默认凭据链。
 
-Region 通过 `REGION_ID` 环境变量或 ECS metadata 自动获取。
+## 环境变量
 
-## 依赖
-
-| 包 | 版本 |
-|----|------|
-| `darabonba-openapi/v2` | v2.1.15 |
-| `kms-20160120/v3` | v3.4.0 |
-| `credentials-go` | v1.4.11 |
-| `cobra` | v1.10.2 |
-| `tea` | v1.4.0 |
-
-## 可配环境变量
-
-| 变量 | 默认 | 说明 |
-|------|------|------|
-| `REGION_ID` | ECS metadata | KMS 地域 |
-| `ENDPOINT_TYPE` | Vpc | `Vpc`(内网) / `Public`(公网) |
+| 变量 | 说明 |
+|------|------|
+| `REGION_ID` | KMS 地域 |
+| `ENDPOINT_TYPE` | `Vpc`(默认) / `Public` |
